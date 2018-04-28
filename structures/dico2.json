@@ -1,0 +1,5 @@
+{
+	"name": "word",
+	"capture": "([A-Z]+)\n.+?, (.+?)( Etym: .+?)?\n\nDefn: ?(.+?) ?\n\n",
+    "content":["word","type",null, {"name":"def", "replace":["\n"," "]}]
+}

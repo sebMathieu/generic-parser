@@ -1,0 +1,4 @@
+path/folder1/bidule-a.txt
+blabla/folder1/machin-c.csv
+bla/folder2/bordel-f.json
+blah/folder3/awsome-z.png

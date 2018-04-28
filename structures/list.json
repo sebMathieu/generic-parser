@@ -1,0 +1,6 @@
+{
+  "name":"tuple",
+  "sep":"\n",
+  "content":[{"name":"number", "sep":"-"}],
+  "list":"-"
+}

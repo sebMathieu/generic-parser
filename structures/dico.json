@@ -1,0 +1,4 @@
+{
+	"name": "word",
+	"capture": "\n([A-Z ]+)\n"
+}
