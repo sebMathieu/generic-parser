@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-"""Generic parser - version 1.0.1
+"""Generic parser - version 1.0.2
 Generic text genparser from a JSON structure using regex or separator.
 
 Usage:

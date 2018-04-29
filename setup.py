@@ -11,7 +11,7 @@ with open('LICENSE') as f:
 
 setup(
     name='generic-parser',
-    version='1.0.1',
+    version='1.0.2',
     description='Generic text parser from a JSON structure using regex or separator.',
     long_description=readme,
     author='Sebastien Mathieu',
