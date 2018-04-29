@@ -18,6 +18,7 @@ setup(
     author_email='smathieu@live.be',
     url='https://github.com/sebMathieu/generic-parser',
     license=license,
+    install_requires=['docopt'],
     packages=find_packages(exclude=('tests', 'doc'))
 )
 
