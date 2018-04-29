@@ -20,7 +20,7 @@ def file_export(struct, parsed, output_path):
     """
 
     # Find format
-    match = re.search("\\.([a-zA-Z]{3})", output_path)
+    match = re.search("\\.([a-zA-Z]+)$", output_path)
     if match is None:
         raise SyntaxError("Output format not regognized from the output file path \"%s\". Available formats: %s" %
                           (output_path, ",".join(genparser.FORMATS.keys())))

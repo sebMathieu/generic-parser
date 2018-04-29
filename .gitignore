@@ -3,3 +3,4 @@ doc/html
 dico-full.json
 venv
 dist
+*.egg-info*
