@@ -1,5 +1,5 @@
-from structure import Structure, parse_structure
-from export import csv_export, json_export
+from .structure import Structure, parse_structure
+from .export import file_export, csv_export, json_export
 
 
 FORMATS = {"csv": csv_export, "json": json_export}

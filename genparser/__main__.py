@@ -1,9 +1,9 @@
 # -*- coding: UTF-8 -*-
-"""General parser - version 0.1
-Generic text parser from a JSON structure using regex or separator.
+"""Generic parser - version 1.0.1
+Generic text genparser from a JSON structure using regex or separator.
 
 Usage:
-    parser [options] <structure> <file2parse>
+    genparser [options] <structure> <file2parse>
 
 Options:
     -h               Display this help.
@@ -20,8 +20,7 @@ from docopt import docopt
 # Relative import fixes
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-import structure, export
-import parser
+import genparser
 
 
 def main(args):
@@ -35,7 +34,7 @@ def main(args):
         output_path = args["-o"]
 
         # Read structure
-        struct = structure.parse_structure(args["<structure>"])
+        struct = genparser.parse_structure(args["<structure>"])
         if output_path is not None:
             print("Parsing structure read of depth %s." % struct.depth())
 
@@ -47,7 +46,7 @@ def main(args):
         # Output
         output_path = args["-o"]
         if args["-f"] is None and output_path is not None:
-            export.file_export(struct, parsed, output_path)
+            genparser.file_export(struct, parsed, output_path)
             print("The file has been \"%s\" written." % output_path)
         else:
             # Get format
@@ -58,12 +57,12 @@ def main(args):
 
             try:
                 if output_path is None:
-                    parser.FORMATS[format](struct, parsed, sys.__stdout__)
+                    genparser.FORMATS[format](struct, parsed, sys.__stdout__)
                 else:
                     with open(output_path, "w") as file:
-                        parser.FORMATS[format](struct, parsed, file)
+                        genparser.FORMATS[format](struct, parsed, file)
             except KeyError:
-                raise SyntaxError("Unkown output format: \"%s\". Available formats: %s" % (format, ",".join(parser.FORMATS.keys())))
+                raise SyntaxError("Unkown output format: \"%s\". Available formats: %s" % (format, ",".join(genparser.FORMATS.keys())))
 
     except (FileNotFoundError, SyntaxError) as e:
         print(e, file=sys.stderr)

@@ -4,7 +4,7 @@ import os
 import unittest
 import io
 
-import parser
+import genparser
 
 
 class TestParser(unittest.TestCase):
@@ -12,7 +12,7 @@ class TestParser(unittest.TestCase):
         os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # Set the working directory to the root.
 
     def test_list(self):
-        struct = parser.parse_structure("structures/list.json")
+        struct = genparser.parse_structure("structures/list.json")
         self.assertEqual(struct.depth(), 2)
 
         # Parse
@@ -21,20 +21,20 @@ class TestParser(unittest.TestCase):
 
         # JSON output
         out = io.StringIO()
-        parser.json_export(struct, l, out)
+        genparser.json_export(struct, l, out)
         s = out.getvalue()
         out.close()
         self.assertEqual(s, '[[{"number": "1"}, "A", "?"], [{"number": "2"}, "B", ","], [{"number": "3"}, "C", "%"]]')
 
         # CSV output
         out = io.StringIO()
-        parser.csv_export(struct, l, out)
+        genparser.csv_export(struct, l, out)
         s = out.getvalue()
         out.close()
         self.assertEqual(s, "number\r\n1;A;?\r\n2;B;,\r\n3;C;%\r\n")
 
     def test_list2(self):
-        struct = parser.parse_structure("structures/list2.json")
+        struct = genparser.parse_structure("structures/list2.json")
         self.assertEqual(struct.depth(), 2)
 
         # Parse
@@ -43,20 +43,20 @@ class TestParser(unittest.TestCase):
 
         # JSON output
         out = io.StringIO()
-        parser.json_export(struct, l, out)
+        genparser.json_export(struct, l, out)
         s = out.getvalue()
         out.close()
         self.assertEqual(s, '[["1", "A", "?"], ["2", "B", ","], ["3", "C", "%"]]')
 
         # CSV output
         out = io.StringIO()
-        parser.csv_export(struct, l, out)
+        genparser.csv_export(struct, l, out)
         s = out.getvalue()
         out.close()
         self.assertEqual(s, "\r\n1;A;?\r\n2;B;,\r\n3;C;%\r\n")
 
     def test_dico(self):
-        struct = parser.parse_structure("structures/dico.json")
+        struct = genparser.parse_structure("structures/dico.json")
         self.assertEqual(struct.depth(), 1)
 
         # Parse
@@ -65,20 +65,20 @@ class TestParser(unittest.TestCase):
 
         # JSON output
         out = io.StringIO()
-        parser.json_export(struct, l, out)
+        genparser.json_export(struct, l, out)
         s = out.getvalue()
         out.close()
         self.assertEqual(s, '[{"word": "AB"}, {"word": "ABACA"}]')
 
         # CSV output
         out = io.StringIO()
-        parser.csv_export(struct, l, out)
+        genparser.csv_export(struct, l, out)
         s = out.getvalue()
         out.close()
         self.assertEqual(s, "AB\r\nABACA\r\n")
 
     def test_dico2(self):
-        struct = parser.parse_structure("structures/dico2.json")
+        struct = genparser.parse_structure("structures/dico2.json")
         self.assertEqual(struct.depth(), 2)
 
         # Parse
@@ -88,7 +88,7 @@ class TestParser(unittest.TestCase):
          ['ABACA', 'n.', 'The Manila-hemp plant (Musa textilis); also, its fiber. See Manila hemp under Manila.']])
 
     def test_paths(self):
-        struct = parser.parse_structure("structures/paths.json")
+        struct = genparser.parse_structure("structures/paths.json")
         self.assertEqual(struct.depth(), 2)
 
         # Parse
@@ -97,14 +97,14 @@ class TestParser(unittest.TestCase):
 
         # JSON output
         out = io.StringIO()
-        parser.json_export(struct, l, out)
+        genparser.json_export(struct, l, out)
         s = out.getvalue()
         out.close()
         self.assertEqual(s, '[{"folder": "path/folder1", "name": "bidule", "letter": "a", "extension": "txt"}, {"folder": "blabla/folder1", "name": "machin", "letter": "c", "extension": "csv"}, {"folder": "bla/folder2", "name": "bordel", "letter": "f", "extension": "json"}]')
 
         # CSV output
         out = io.StringIO()
-        parser.csv_export(struct, l, out)
+        genparser.csv_export(struct, l, out)
         s = out.getvalue()
         out.close()
         self.assertEqual(s, "folder;name;letter;extension\r\npath/folder1;bidule;a;txt\r\nblabla/folder1;machin;c;csv\r\nbla/folder2;bordel;f;json\r\n")

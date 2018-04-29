@@ -7,7 +7,7 @@ import csv
 import json
 import re
 
-import parser
+import genparser
 
 
 def file_export(struct, parsed, output_path):
@@ -23,8 +23,8 @@ def file_export(struct, parsed, output_path):
     match = re.search("\\.([a-zA-Z]{3})", output_path)
     if match is None:
         raise SyntaxError("Output format not regognized from the output file path \"%s\". Available formats: %s" %
-                          (output_path, ",".join(parser.FORMATS.keys())))
-    exporter = parser.FORMATS[match.group(1)]
+                          (output_path, ",".join(genparser.FORMATS.keys())))
+    exporter = genparser.FORMATS[match.group(1)]
 
     # Write
     with open(output_path, "w") as file:

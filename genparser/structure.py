@@ -55,12 +55,13 @@ class Structure:
             s = r.sub(c, s)
         return s
 
-    def parse_file(self, file_path: str):
+    def parse_file(self, file_path, bufsize=65536):
         """
         Parse a file following a given structure.
 
         Args:
             file_path: Path to the file.
+            bufsize: Buffer size as a positive integer. If none, read line by line.
 
         Returns:
              Parsed content as a list.
@@ -69,11 +70,20 @@ class Structure:
         content = [""]  # Current content read
         parsed = []
         with open(file_path) as file:
-            for line in file:
-                content[0] += line
-                self.parse(content, parsed)
+            if bufsize is None:
+                for line in file:
+                    content[0] += line
+                    self.parse(content, parsed)
+            else:
+                while True:
+                    s = file.read(bufsize)
+                    if s == '':
+                        break
+                    content[0] += s
+                    while self.parse(content, parsed):
+                        pass
 
-            return parsed
+        return parsed
 
     def parse(self, container, parsed):
         """
@@ -82,10 +92,14 @@ class Structure:
         Args:
             container: List of one string.
             parsed: List to receive the parsed content.
+
+        Returns:
+            Boolean true if something as been found.
         """
 
         parsed.append(self._clean_str(container[0]))
         container[0] = ""
+        return True
 
     def depth(self):
         """
@@ -146,6 +160,8 @@ class SeparatorStructure(Structure):
             parsed.append(p)
         elif len(content[0]) > 0:
             parsed.append(content[0])
+
+        return True
 
     def depth(self):
         d = 0 if self.list is None else 1
@@ -219,6 +235,8 @@ class CaptureStructure(Structure):
             container[0] = container[0][match.end():]
         except IndexError:
             container[0] = ""
+
+        return True
 
     def depth(self):
         d = 0

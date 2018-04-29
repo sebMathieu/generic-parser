@@ -1,5 +1,5 @@
 {
   "name":"files path",
-  "capture":"(.+)\\/([^\\/]+)-([a-z])\\.(.+)\n",
+  "capture":"(.+?)\\/([^\\/]+)-([a-z])\\.(.+?)\n",
   "content":["folder","name","letter","extension"]
 }

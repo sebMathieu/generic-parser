@@ -83,6 +83,7 @@ Three type of structure are available: capture structures, separator structures 
             "content":["list,"of","structures","strings or",null]
         }
 
+    Note that the "." in regexes includes the newline character.
 
 3. Plain structures
 
