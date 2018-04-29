@@ -31,16 +31,17 @@ def file_export(struct, parsed, output_path):
         exporter(struct, parsed, file)
 
 
-def json_export(struct, parsed, output):
+def json_export(struct, parsed, output, indent=4):
     """
     Export a structure to the given output in JSON.
 
         struct: Structure of depth inferior to 2.
         parsed: List parsed according to the given structure.
         output: Output stream.
+        indent: Number of spaces to indent, None for compact mode.
     """
     converted = [struct.to_json(e) for e in parsed]
-    json.dump(converted, output)
+    json.dump(converted, output, indent=indent)
 
 
 def csv_export(struct, parsed, output, header=True, column_separator=';'):

@@ -21,7 +21,7 @@ class TestParser(unittest.TestCase):
 
         # JSON output
         out = io.StringIO()
-        genparser.json_export(struct, l, out)
+        genparser.json_export(struct, l, out, None)
         s = out.getvalue()
         out.close()
         self.assertEqual(s, '[[{"number": "1"}, "A", "?"], [{"number": "2"}, "B", ","], [{"number": "3"}, "C", "%"]]')
@@ -43,7 +43,7 @@ class TestParser(unittest.TestCase):
 
         # JSON output
         out = io.StringIO()
-        genparser.json_export(struct, l, out)
+        genparser.json_export(struct, l, out, None)
         s = out.getvalue()
         out.close()
         self.assertEqual(s, '[["1", "A", "?"], ["2", "B", ","], ["3", "C", "%"]]')
@@ -65,7 +65,7 @@ class TestParser(unittest.TestCase):
 
         # JSON output
         out = io.StringIO()
-        genparser.json_export(struct, l, out)
+        genparser.json_export(struct, l, out, None)
         s = out.getvalue()
         out.close()
         self.assertEqual(s, '[{"word": "AB"}, {"word": "ABACA"}]')
@@ -97,7 +97,7 @@ class TestParser(unittest.TestCase):
 
         # JSON output
         out = io.StringIO()
-        genparser.json_export(struct, l, out)
+        genparser.json_export(struct, l, out, None)
         s = out.getvalue()
         out.close()
         self.assertEqual(s, '[{"folder": "path/folder1", "name": "bidule", "letter": "a", "extension": "txt"}, {"folder": "blabla/folder1", "name": "machin", "letter": "c", "extension": "csv"}, {"folder": "bla/folder2", "name": "bordel", "letter": "f", "extension": "json"}]')
